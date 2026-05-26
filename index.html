@@ -3,13 +3,15 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>BURMALDA CLASH | Neon Edition</title>
+  <title>BURMALDA CLASH | Theme Switcher</title>
   <link rel="stylesheet" href="./style.css">
 </head>
 <body>
 
-  <!-- Анимированный неоновый фон на фоне -->
   <div class="neon-bg-glow"></div>
+
+  <!-- Кнопка переключения темы -->
+  <button id="themeToggleBtn" class="theme-toggle" onclick="toggleTheme()">🌓 Сменить тему</button>
 
   <div class="game-container">
     <div class="game-header">
@@ -29,7 +31,6 @@
       </div>
     </div>
 
-    <!-- Игровое поле -->
     <div class="cards-grid" id="cardsGrid"></div>
 
     <button id="winBtn" class="restart-btn" onclick="initGame()">🔥 ПОБЕДА! СЫГРАТЬ ЕЩЕ РАЗ? 🔥</button>
@@ -38,3 +39,4 @@
   <script src="./script.js"></script>
 </body>
 </html>
+
