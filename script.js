@@ -112,3 +112,8 @@ function unflipCards() {
     isLockBoard = false;
   }, 1000);
 }
+// Функция переключения светлой/темной темы
+function toggleTheme() {
+  // Переключаем класс light-theme у тега body
+  document.body.classList.toggle('light-theme');
+}
