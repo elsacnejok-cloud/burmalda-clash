@@ -5,72 +5,116 @@
 }
 
 body {
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-    background: #0f0f13; /* Глубокий геймерский тёмный фон */
+    font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    background: #06060c; /* Ультра-темный геймерский фон */
     color: #fff;
     min-height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
     padding: 20px;
+    overflow-x: hidden;
+    position: relative;
+}
+
+/* Мягкое неоновое свечение на заднем плане */
+.neon-bg-glow {
+    position: absolute;
+    width: 400px;
+    height: 400px;
+    background: radial-gradient(circle, rgba(255, 0, 85, 0.15) 0%, rgba(122, 0, 255, 0.05) 50%, transparent 100%);
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 0;
+    pointer-events: none;
 }
 
 .game-container {
     text-align: center;
-    max-width: 600px;
+    max-width: 650px;
     width: 100%;
+    z-index: 1;
 }
 
+/* Анимированный заголовок */
 h1 {
-    font-size: 32px;
-    letter-spacing: 2px;
-    margin-bottom: 10px;
+    font-size: 38px;
+    font-weight: 900;
+    letter-spacing: 3px;
+    margin-bottom: 5px;
     background: linear-gradient(45deg, #ff0055, #7a00ff);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
+    text-shadow: 0 0 20px rgba(255, 0, 85, 0.3);
+}
+
+.neon-line {
+    height: 2px;
+    width: 150px;
+    background: linear-gradient(90deg, transparent, #ff0055, #7a00ff, transparent);
+    margin: 0 auto 15px;
+    box-shadow: 0 0 10px #ff0055;
 }
 
 .subtitle {
-    color: #888;
+    color: #8a8ab0;
     font-size: 14px;
-    margin-bottom: 25px;
+    margin-bottom: 30px;
+    font-weight: 500;
 }
 
+/* Красивая неоновая панель счета */
 .stats-box {
     display: flex;
     justify-content: space-around;
-    background: #16161f;
-    padding: 15px;
-    border-radius: 12px;
-    margin-bottom: 25px;
-    border: 1px solid #252533;
+    align-items: center;
+    background: rgba(22, 22, 31, 0.7);
+    backdrop-filter: blur(10px);
+    padding: 15px 25px;
+    border-radius: 16px;
+    margin-bottom: 30px;
+    border: 1px solid rgba(122, 0, 255, 0.2);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
 }
 
 .stat {
-    font-size: 16px;
-    font-weight: 600;
+    font-size: 18px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    color: #e2e2ff;
+}
+
+.stat-icon {
+    margin-right: 5px;
+}
+
+.stat-divider {
+    width: 1px;
+    height: 25px;
+    background: rgba(122, 0, 255, 0.3);
 }
 
 /* СЕТКА КАРТОЧЕК */
 .cards-grid {
     display: grid;
-    grid-template-columns: repeat(4, 1fr); /* 4 колонки */
-    gap: 15px;
-    margin-bottom: 25px;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 18px;
+    margin-bottom: 30px;
 }
 
-/* На мобилках сетка перестроится в 3 колонки */
-@media (max-width: 480px) {
+@media (max-width: 500px) {
     .cards-grid {
         grid-template-columns: repeat(3, 1fr);
-        gap: 10px;
+        gap: 12px;
     }
+    h1 { font-size: 28px; }
 }
 
-/* КАРТОЧКА (ОСНОВА ДЛЯ 3D И АНИМАЦИИ) */
+/* КАРТОЧКА С ЭФФЕКТАМИ */
 .card-wrapper {
-    aspect-ratio: 3/4; /* Пропорции карточки */
-    perspective: 1000px; /* Эффект глубины */
+    aspect-ratio: 3/4;
+    perspective: 1000px;
     cursor: pointer;
 }
 
@@ -79,73 +123,85 @@ h1 {
     width: 100%;
     height: 100%;
     transform-style: preserve-3d;
-    transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.2).;
 }
 
-/* Когда на карточку кликают, добавляется этот класс и она переворачивается */
 .card-wrapper.flipped .card-inner {
     transform: rotateY(180deg);
 }
 
-/* Когда пара найдена, карточка мягко пульсирует и блокируется */
+/* Когда пара найдена */
 .card-wrapper.matched {
     cursor: default;
     pointer-events: none;
-    opacity: 0.6;
     transform: scale(0.95);
-    transition: 0.3s;
+    opacity: 0.5;
+    filter: drop-shadow(0 0 8px #7a00ff);
+    transition: 0.4s ease;
 }
 
 .card-face {
     position: absolute;
     width: 100%;
     height: 100%;
-    backface-visibility: hidden; /* Скрывает изнанку при перевороте */
-    border-radius: 10px;
-    border: 2px solid #252533;
+    backface-visibility: hidden;
+    border-radius: 14px;
     display: flex;
     justify-content: center;
     align-items: center;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
 }
 
-/* РУБАШКА (ЛИЦЕВАЯ СТОРОНА ЗАКРЫТОЙ КАРТЫ) */
+/* ТЕМНАЯ КИБЕР-РУБАШКА С ПОДСВЕТКОЙ */
 .card-front {
-    background: linear-gradient(135deg, #1e1e2a 0%, #111116 100%);
-    color: #4a4a6a;
-    font-size: 24px;
+    background: linear-gradient(135deg, #13131f 0%, #09090d 100%);
+    border: 2px solid #1c1c2b;
+    color: #58587a;
+    font-size: 28px;
+    font-weight: bold;
+    transition: 0.3s;
 }
 
+/* Подсветка карт при наведении */
 .card-wrapper:hover .card-front {
-    border-color: #ff0055; /* Подсветка при наведении */
+    border-color: #ff0055;
+    box-shadow: 0 0 15px rgba(255, 0, 85, 0.4);
+    color: #ff0055;
+    transform: scale(1.03);
 }
 
-/* СТЕНКА С ФОТКОЙ (ОТКРЫТАЯ КАРТА) */
+/* ВНУТРЕННЯЯ СТЕНКА ДЛЯ ТВОИХ ФОТОГРАФИЙ */
 .card-back {
-    background: #1c1c27;
+    background: #111118;
+    border: 2px solid #7a00ff;
+    box-shadow: 0 0 15px rgba(122, 0, 255, 0.3);
     transform: rotateY(180deg);
     overflow: hidden;
 }
 
-/* Стили для твоих будущих картинок */
 .card-back img {
     width: 100%;
     height: 100%;
     object-fit: cover;
 }
 
+/* НЕОНОВАЯ КНОПКА ПОБЕДЫ */
 .restart-btn {
     background: linear-gradient(45deg, #ff0055, #7a00ff);
     color: white;
     border: none;
-    padding: 12px 30px;
-    border-radius: 25px;
+    padding: 14px 35px;
+    border-radius: 50px;
     font-size: 16px;
-    font-weight: 600;
+    font-weight: 800;
+    letter-spacing: 1px;
     cursor: pointer;
-    box-shadow: 0 4px 15px rgba(255, 0, 85, 0.3);
-    transition: 0.2s;
+    box-shadow: 0 0 25px rgba(255, 0, 85, 0.5);
+    transition: 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
 .restart-btn:hover {
     transform: scale(1.05);
+    box-shadow: 0 0 35px #ff0055, 0 0 15px #7a00ff;
 }
+
