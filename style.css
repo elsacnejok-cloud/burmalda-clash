@@ -205,4 +205,71 @@ h1 {
     transform: scale(1.05);
     box-shadow: 0 0 35px #ff0055, 0 0 15px #7a00ff;
 }
+/* КНОПКА ПЕРЕКЛЮЧЕНИЯ ТЕМЫ */
+.theme-toggle {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background: rgba(22, 22, 31, 0.8);
+    color: #fff;
+    border: 1px solid rgba(122, 0, 255, 0.4);
+    padding: 8px 16px;
+    border-radius: 20px;
+    cursor: pointer;
+    font-family: inherit;
+    font-size: 13px;
+    font-weight: 600;
+    z-index: 1005;
+    transition: 0.3s;
+}
+.theme-toggle:hover {
+    transform: scale(1.05);
+    border-color: #ff0055;
+}
+
+/* СТИЛИ ДЛЯ СВЕТЛОЙ ТЕМЫ (ВКЛЮЧАЮТСЯ ЧЕРЕЗ КЛАСС .light-theme) */
+body.light-theme {
+    background: #f4f4f9; /* Нежный светлый фон */
+    color: #1a1a2e;
+}
+
+body.light-theme .neon-bg-glow {
+    background: radial-gradient(circle, rgba(255, 0, 85, 0.1) 0%, rgba(122, 0, 255, 0.02) 60%, transparent 100%);
+}
+
+body.light-theme h1 {
+    text-shadow: 0 0 15px rgba(255, 0, 85, 0.15);
+}
+
+body.light-theme .subtitle {
+    color: #555577;
+}
+
+body.light-theme .stats-box {
+    background: rgba(255, 255, 255, 0.85);
+    border-color: rgba(122, 0, 255, 0.15);
+    box-shadow: 0 8px 32px rgba(122, 0, 255, 0.08);
+}
+
+body.light-theme .stat {
+    color: #2b2b45;
+}
+
+body.light-theme .stat-divider {
+    background: rgba(122, 0, 255, 0.15);
+}
+
+/* Светлая рубашка карт */
+body.light-theme .card-front {
+    background: linear-gradient(135deg, #ffffff 0%, #edf0f8 100%);
+    border: 2px solid #dcdce9;
+    color: #8b8ba7;
+}
+
+body.light-theme .theme-toggle {
+    background: rgba(255, 255, 255, 0.9);
+    color: #1a1a2e;
+    border-color: #dcdce9;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+}
 
