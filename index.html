@@ -3,24 +3,36 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>MEME GAME | Найди пару</title>
+  <title>BURMALDA CLASH | Neon Edition</title>
   <link rel="stylesheet" href="./style.css">
 </head>
 <body>
 
+  <!-- Анимированный неоновый фон на фоне -->
+  <div class="neon-bg-glow"></div>
+
   <div class="game-container">
-    <h1>MEME & GAME MATCH ⚡</h1>
-    <p class="subtitle">Переворачивай карточки и ищи совпадения</p>
+    <div class="game-header">
+      <h1>BURMALDA CLASH</h1>
+      <div class="neon-line"></div>
+    </div>
+    
+    <p class="subtitle">Раскрой тайны Бурмалды. Найди все парные артефакты ⚡</p>
     
     <div class="stats-box">
-      <div class="stat">Сделано ходов: <span id="movesCount">0</span></div>
-      <div class="stat">Счёт: <span id="matchesCount">0</span> / 6</div>
+      <div class="stat">
+        <span class="stat-icon">🎮</span> Ходы: <span id="movesCount">0</span>
+      </div>
+      <div class="stat-divider"></div>
+      <div class="stat">
+        <span class="stat-icon">✨</span> Пары: <span id="matchesCount">0</span> / 6
+      </div>
     </div>
 
-    <!-- Сетка для 12 карточек -->
+    <!-- Игровое поле -->
     <div class="cards-grid" id="cardsGrid"></div>
 
-    <button id="winBtn" class="restart-btn" onclick="initGame()">Победа! Сыграть ещё раз? 🔥</button>
+    <button id="winBtn" class="restart-btn" onclick="initGame()">🔥 ПОБЕДА! СЫГРАТЬ ЕЩЕ РАЗ? 🔥</button>
   </div>
 
   <script src="./script.js"></script>
